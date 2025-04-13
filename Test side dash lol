@@ -1,5 +1,4 @@
--- LocalScript
-
+local code = [[
 local player = game.Players.LocalPlayer 
 local character = player.Character or player.CharacterAdded:Wait() 
 local humanoid = character:WaitForChild("Humanoid") 
@@ -15,14 +14,14 @@ local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
 screenGui.Name = "SideDashGui"
 screenGui.ResetOnSpawn = false
 
--- Create a draggable TextButton as the entire GUI element (removes the old small white box)
+-- Create a draggable TextButton as the entire GUI element 
 local button = Instance.new("TextButton", screenGui)
-button.Size = UDim2.new(0, 250, 0, 100)  -- enlarged size for better look
+button.Size = UDim2.new(0, 250, 0, 100)
 button.Position = UDim2.new(0, 10, 0, 10)
-button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- dark background
+button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 button.BackgroundTransparency = 0.2
 button.BorderSizePixel = 3
-button.BorderColor3 = Color3.new(1, 1, 1)  -- white border
+button.BorderColor3 = Color3.new(1, 1, 1)
 button.Text = "Side Dash M1"
 button.Font = Enum.Font.GothamBold
 button.TextSize = 24
@@ -43,3 +42,12 @@ end
 
 -- Button click event connection
 button.MouseButton1Click:Connect(dashRight)
+]]
+
+-- Create the loadstring function and execute it
+local runScript = loadstring(code)
+if runScript then
+    runScript()
+else
+    warn("Failed to load script.")
+end
